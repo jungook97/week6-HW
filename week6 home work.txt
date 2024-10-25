@@ -1,0 +1,72 @@
+Дайыржанова Диана ИС231(4) week6 variant1
+
+using System;
+
+// Определяем абстрактный класс StorageDevice
+abstract class StorageDevice
+{
+    // Поле для хранения емкости устройства в гигабайтах
+    public int Capacity { get; set; }
+
+    // Абстрактный метод для сохранения данных
+    public abstract void StoreData(); // Этот метод должен быть реализован в производных классах
+}
+
+// Класс HardDrive, наследующийся от StorageDevice
+class HardDrive : StorageDevice
+{
+    // Поле для скорости чтения/записи в мегабайтах в секунду
+    public int WriteSpeed { get; set; }
+
+    // Реализация метода StoreData для жесткого диска
+    public override void StoreData()
+    {
+        // Вывод сообщения о сохранении данных с указанием скорости записи
+        Console.WriteLine($"Save data to hard drive with speed {WriteSpeed} MB/s");
+    }
+}
+
+// Класс FlashDrive, наследующийся от StorageDevice
+class FlashDrive : StorageDevice
+{
+    // Поле для типа USB, например, "USB 2.0", "USB 3.0"
+    public string UsbType { get; set; }
+
+    // Реализация метода StoreData для флеш-накопителя
+    public override void StoreData()
+    {
+        // Вывод сообщения о сохранении данных с указанием типа USB
+        Console.WriteLine($"Saving data to a flash drive type {UsbType}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Создаем объект класса HardDrive и задаем параметры
+        HardDrive hardDrive = new HardDrive
+        {
+            Capacity = 1000,    // Задаем емкость в гигабайтах
+            WriteSpeed = 150    // Задаем скорость записи в мегабайтах в секунду
+        };
+
+        // Вызываем метод StoreData для объекта HardDrive
+        hardDrive.StoreData();
+
+        // Создаем объект класса FlashDrive и задаем параметры
+        FlashDrive flashDrive = new FlashDrive
+        {
+            Capacity = 128,         // Задаем емкость в гигабайтах
+            UsbType = "USB 3.0"     // Задаем тип USB
+        };
+
+        // Вызываем метод StoreData для объекта FlashDrive
+        flashDrive.StoreData();
+    }
+}
+
+
+Вывод: 
+Save data to hard drive with speed 150 MB/s
+Saving data to a flash drive type USB 3.0
